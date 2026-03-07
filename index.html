@@ -3,8 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Novu Studios — Highlight Posters</title>
+<title>Novu Studios — All Posters</title>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oxanium:wght@200;400;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=Space+Mono&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -32,8 +33,24 @@ h1 {
   text-transform: uppercase;
   margin-bottom: 48px;
 }
-
 h1 span { color: var(--lime); }
+
+.section-label {
+  font-family: 'Space Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.3em;
+  color: #1e1e1e;
+  text-transform: uppercase;
+  margin-bottom: 28px;
+  align-self: flex-start;
+}
+.section-label span { color: var(--lime); }
+.section-divider {
+  width: 100%;
+  height: 1px;
+  background: #111;
+  margin: 48px 0 40px;
+}
 
 /* poster wrapper */
 .poster-row {
@@ -41,6 +58,14 @@ h1 span { color: var(--lime); }
   gap: 24px;
   margin-bottom: 48px;
   align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.poster-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
 }
 
 .poster-label {
@@ -50,10 +75,26 @@ h1 span { color: var(--lime); }
   letter-spacing: 0.2em;
   text-transform: uppercase;
   text-align: center;
-  margin-top: 10px;
+  margin-top: 6px;
 }
 
-/* Each poster: 9:16 at 270x480 */
+.dl-btn {
+  background: var(--lime);
+  color: #080808;
+  border: none;
+  padding: 7px 0;
+  width: 100%;
+  font-family: 'Space Mono', monospace;
+  font-size: 8px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: opacity 0.15s;
+}
+.dl-btn:hover { opacity: 0.8; }
+.dl-btn:disabled { opacity: 0.4; cursor: default; }
+
+/* Each story poster: 9:16 at 270x480 */
 .poster {
   width: 270px;
   height: 480px;
@@ -73,7 +114,6 @@ h1 span { color: var(--lime); }
   gap: 8px;
   z-index: 10;
 }
-
 .story-progress {
   flex: 1;
   height: 2px;
@@ -86,7 +126,6 @@ h1 span { color: var(--lime); }
   background: #fff;
   border-radius: 2px;
 }
-
 .story-avatar {
   width: 22px;
   height: 22px;
@@ -98,7 +137,6 @@ h1 span { color: var(--lime); }
   justify-content: center;
   flex-shrink: 0;
 }
-
 .story-name {
   font-size: 9px;
   color: rgba(255,255,255,0.8);
@@ -107,11 +145,7 @@ h1 span { color: var(--lime); }
 }
 
 /* Novu logo mark small */
-.novu-mark {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-}
+.novu-mark { display: flex; align-items: center; gap: 5px; }
 .novu-mark-text {
   font-family: 'Oxanium', sans-serif;
   font-size: 9px;
@@ -123,10 +157,7 @@ h1 span { color: var(--lime); }
 /* ───────────────────────────
    POSTER 1 — RESTAURANTS
 ─────────────────────────── */
-.p-restaurants {
-  background: #0a0a0a;
-}
-
+.p-restaurants { background: #0a0a0a; }
 .p-restaurants .bg-grid {
   position: absolute;
   inset: 0;
@@ -135,7 +166,6 @@ h1 span { color: var(--lime); }
     linear-gradient(90deg, rgba(200,255,0,0.03) 1px, transparent 1px);
   background-size: 30px 30px;
 }
-
 .p-restaurants .lime-bar {
   position: absolute;
   left: 0; top: 0; bottom: 0;
@@ -143,13 +173,11 @@ h1 span { color: var(--lime); }
   background: var(--lime);
   box-shadow: 0 0 20px var(--lime);
 }
-
 .p-restaurants .content {
   position: absolute;
   bottom: 0; left: 0; right: 0;
   padding: 28px 24px;
 }
-
 .p-restaurants .big-icon {
   position: absolute;
   top: 80px;
@@ -166,7 +194,6 @@ h1 span { color: var(--lime); }
   margin-bottom: 10px;
   display: block;
 }
-
 .poster-title {
   font-family: 'Bebas Neue', sans-serif;
   font-size: 52px;
@@ -175,16 +202,13 @@ h1 span { color: var(--lime); }
   letter-spacing: 0.02em;
   margin-bottom: 14px;
 }
-
 .poster-body {
   font-size: 11px;
   color: #444;
   line-height: 1.7;
   font-weight: 300;
 }
-
 .poster-body strong { color: #666; font-weight: 400; }
-
 .lime-pill {
   display: inline-block;
   background: var(--lime);
@@ -200,10 +224,7 @@ h1 span { color: var(--lime); }
 /* ───────────────────────────
    POSTER 2 — MENUS
 ─────────────────────────── */
-.p-menus {
-  background: #f0ede6;
-}
-
+.p-menus { background: #f0ede6; }
 .p-menus .dark-block {
   position: absolute;
   top: 0; left: 0; right: 0;
@@ -211,20 +232,17 @@ h1 span { color: var(--lime); }
   background: #0a0a0a;
   clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
 }
-
 .p-menus .content {
   position: absolute;
   bottom: 0; left: 0; right: 0;
   padding: 24px;
 }
-
 .p-menus .top-content {
   position: absolute;
   top: 70px;
   left: 24px;
   right: 24px;
 }
-
 .p-menus .menu-showcase {
   background: #111;
   border: 1px solid #1e1e1e;
@@ -232,7 +250,6 @@ h1 span { color: var(--lime); }
   padding: 12px;
   margin-top: 12px;
 }
-
 .menu-row {
   display: flex;
   align-items: center;
@@ -243,7 +260,6 @@ h1 span { color: var(--lime); }
 .menu-row:last-child { border-bottom: none; }
 .menu-item-name { font-size: 8px; color: #888; font-weight: 300; letter-spacing: 0.05em; }
 .menu-item-price { font-family: 'Space Mono', monospace; font-size: 8px; color: var(--lime); }
-
 .p-menus .poster-title { color: #0a0a0a; font-size: 44px; }
 .p-menus .tag { color: #888; }
 .p-menus .poster-body { color: #999; }
@@ -251,42 +267,28 @@ h1 span { color: var(--lime); }
 /* ───────────────────────────
    POSTER 3 — PORTFOLIO
 ─────────────────────────── */
-.p-portfolio {
-  background: #080808;
-}
-
+.p-portfolio { background: #080808; }
 .p-portfolio .accent-circle {
   position: absolute;
-  width: 280px;
-  height: 280px;
+  width: 280px; height: 280px;
   border-radius: 50%;
   border: 1px solid rgba(200,255,0,0.06);
-  top: 50%;
-  left: 50%;
+  top: 50%; left: 50%;
   transform: translate(-50%, -50%);
 }
-
 .p-portfolio .accent-circle-2 {
   position: absolute;
-  width: 200px;
-  height: 200px;
+  width: 200px; height: 200px;
   border-radius: 50%;
   border: 1px solid rgba(200,255,0,0.04);
-  top: 50%;
-  left: 50%;
+  top: 50%; left: 50%;
   transform: translate(-50%, -50%);
 }
-
 .p-portfolio .project-cards {
   position: absolute;
-  top: 80px;
-  left: 20px;
-  right: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
+  top: 80px; left: 20px; right: 20px;
+  display: flex; flex-direction: column; gap: 6px;
 }
-
 .proj-card {
   background: #111;
   border: 1px solid #1c1c1c;
@@ -296,13 +298,10 @@ h1 span { color: var(--lime); }
   align-items: center;
   justify-content: space-between;
 }
-
 .proj-card.active { border-color: rgba(200,255,0,0.3); }
-
 .proj-name { font-size: 9px; color: #f0ede6; font-weight: 400; letter-spacing: 0.05em; }
 .proj-type { font-family: 'Space Mono', monospace; font-size: 7px; color: #333; }
 .proj-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--lime); }
-
 .p-portfolio .content {
   position: absolute;
   bottom: 0; left: 0; right: 0;
@@ -312,35 +311,24 @@ h1 span { color: var(--lime); }
 /* ───────────────────────────
    POSTER 4 — PROCESS
 ─────────────────────────── */
-.p-process {
-  background: #0a0a0a;
-}
-
+.p-process { background: #0a0a0a; }
 .p-process .stripe {
   position: absolute;
-  top: 0; bottom: 0;
-  right: 0;
+  top: 0; bottom: 0; right: 0;
   width: 5px;
   background: var(--lime);
 }
-
 .p-process .steps-visual {
   position: absolute;
-  top: 78px;
-  left: 24px;
-  right: 32px;
-  display: flex;
-  flex-direction: column;
-  gap: 0;
+  top: 78px; left: 24px; right: 32px;
+  display: flex; flex-direction: column; gap: 0;
 }
-
 .step-item {
   display: flex;
   align-items: flex-start;
   gap: 14px;
   padding: 12px 0;
 }
-
 .step-left {
   display: flex;
   flex-direction: column;
@@ -348,10 +336,8 @@ h1 span { color: var(--lime); }
   gap: 0;
   flex-shrink: 0;
 }
-
 .step-num {
-  width: 26px;
-  height: 26px;
+  width: 26px; height: 26px;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -360,16 +346,12 @@ h1 span { color: var(--lime); }
   font-size: 10px;
   font-weight: 700;
 }
-
 .step-num.active { background: var(--lime); color: #080808; }
 .step-num.inactive { background: #111; border: 1px solid #222; color: #333; }
-
 .step-connector { width: 1px; height: 20px; background: #1a1a1a; }
-
 .step-info { padding-top: 3px; }
 .step-title { font-size: 10px; color: #f0ede6; font-weight: 500; margin-bottom: 2px; letter-spacing: 0.02em; }
 .step-desc { font-size: 8px; color: #333; font-weight: 300; line-height: 1.5; }
-
 .p-process .content {
   position: absolute;
   bottom: 0; left: 0; right: 0;
@@ -379,48 +361,35 @@ h1 span { color: var(--lime); }
 /* ───────────────────────────
    POSTER 5 — REVIEWS
 ─────────────────────────── */
-.p-reviews {
-  background: #f0ede6;
-}
-
+.p-reviews { background: #f0ede6; }
 .p-reviews .top-block {
   position: absolute;
   top: 0; left: 0; right: 0;
   height: 42%;
   background: #0a0a0a;
 }
-
 .p-reviews .quote-block {
   position: absolute;
-  top: 56px;
-  left: 20px;
-  right: 20px;
+  top: 56px; left: 20px; right: 20px;
   background: #111;
   border-left: 3px solid var(--lime);
   padding: 14px 14px 14px 16px;
   border-radius: 0 6px 6px 0;
 }
-
 .quote-text { font-size: 10px; color: #aaa; line-height: 1.6; font-style: italic; font-weight: 300; }
 .quote-author { font-family: 'Space Mono', monospace; font-size: 7px; color: #444; margin-top: 8px; letter-spacing: 0.1em; }
-
 .stars { color: var(--lime); font-size: 12px; margin-bottom: 6px; }
-
 .p-reviews .second-review {
   position: absolute;
-  top: 220px;
-  left: 20px;
-  right: 20px;
+  top: 220px; left: 20px; right: 20px;
   background: #fff;
   border-radius: 6px;
   padding: 12px;
   box-shadow: 0 4px 20px rgba(0,0,0,0.1);
 }
-
 .review-2-stars { color: #0a0a0a; font-size: 10px; margin-bottom: 4px; }
 .review-2-text { font-size: 9px; color: #555; line-height: 1.6; font-style: italic; }
 .review-2-author { font-size: 8px; color: #aaa; margin-top: 6px; }
-
 .p-reviews .content {
   position: absolute;
   bottom: 0; left: 0; right: 0;
@@ -432,31 +401,22 @@ h1 span { color: var(--lime); }
 /* ───────────────────────────
    POSTER 6 — PRICING
 ─────────────────────────── */
-.p-pricing {
-  background: var(--lime);
-}
-
+.p-pricing { background: var(--lime); }
 .p-pricing .tag { color: rgba(8,8,8,0.45); }
 .p-pricing .poster-title { color: #080808; font-size: 56px; }
 .p-pricing .poster-body { color: rgba(8,8,8,0.5); }
-
 .p-pricing .big-num {
   font-family: 'Bebas Neue', sans-serif;
   font-size: 130px;
   color: rgba(8,8,8,0.06);
   position: absolute;
-  top: 60px;
-  right: -10px;
+  top: 60px; right: -10px;
   line-height: 1;
 }
-
 .p-pricing .pkg-row {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
+  display: flex; flex-direction: column; gap: 6px;
   margin-top: 14px;
 }
-
 .pkg-item {
   display: flex;
   align-items: center;
@@ -465,10 +425,8 @@ h1 span { color: var(--lime); }
   padding: 8px 12px;
   border-radius: 4px;
 }
-
 .pkg-name { font-size: 9px; color: #080808; font-weight: 500; letter-spacing: 0.05em; }
 .pkg-price { font-family: 'Oxanium', sans-serif; font-size: 11px; font-weight: 700; color: #080808; }
-
 .p-pricing .cta-bar {
   background: #080808;
   color: var(--lime);
@@ -481,7 +439,6 @@ h1 span { color: var(--lime); }
   position: absolute;
   bottom: 0; left: 0; right: 0;
 }
-
 .p-pricing .content {
   position: absolute;
   bottom: 36px; left: 0; right: 0;
@@ -491,41 +448,28 @@ h1 span { color: var(--lime); }
 /* ───────────────────────────
    POSTER 7 — BEHIND THE SCENES
 ─────────────────────────── */
-.p-bts {
-  background: #080808;
-}
-
+.p-bts { background: #080808; }
 .p-bts .editor-mock {
   position: absolute;
-  top: 68px;
-  left: 18px;
-  right: 18px;
+  top: 68px; left: 18px; right: 18px;
   background: #0d1117;
   border: 1px solid #1e1e1e;
   border-radius: 8px;
   overflow: hidden;
 }
-
 .editor-topbar {
   background: #161b22;
   padding: 7px 10px;
-  display: flex;
-  align-items: center;
-  gap: 6px;
+  display: flex; align-items: center; gap: 6px;
 }
-
 .ed-dot { width: 7px; height: 7px; border-radius: 50%; }
-
 .editor-body { padding: 10px 12px; display: flex; flex-direction: column; gap: 4px; }
-
 .code-line {
   font-family: 'Space Mono', monospace;
   font-size: 7px;
   line-height: 1.6;
-  display: flex;
-  gap: 8px;
+  display: flex; gap: 8px;
 }
-
 .ln { color: #21262d; min-width: 12px; }
 .kw { color: #ff7b72; }
 .fn { color: #d2a8ff; }
@@ -533,7 +477,6 @@ h1 span { color: var(--lime); }
 .cm { color: #8b949e; }
 .nt { color: #79c0ff; }
 .at { color: #ffa657; }
-
 .p-bts .content {
   position: absolute;
   bottom: 0; left: 0; right: 0;
@@ -543,65 +486,43 @@ h1 span { color: var(--lime); }
 /* ───────────────────────────
    POSTER 8 — CONTACT
 ─────────────────────────── */
-.p-contact {
-  background: #080808;
-}
-
+.p-contact { background: #080808; }
 .p-contact .diagonal-bg {
   position: absolute;
   inset: 0;
   background: linear-gradient(135deg, #0a0a0a 60%, #0f1a00 100%);
 }
-
 .p-contact .glow {
   position: absolute;
-  width: 200px;
-  height: 200px;
+  width: 200px; height: 200px;
   border-radius: 50%;
   background: radial-gradient(circle, rgba(200,255,0,0.08) 0%, transparent 70%);
-  bottom: 100px;
-  right: -50px;
+  bottom: 100px; right: -50px;
 }
-
 .p-contact .contact-cards {
   position: absolute;
-  top: 76px;
-  left: 20px;
-  right: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
+  top: 76px; left: 20px; right: 20px;
+  display: flex; flex-direction: column; gap: 8px;
 }
-
 .contact-card {
   background: #0e0e0e;
   border: 1px solid #1a1a1a;
   border-radius: 8px;
   padding: 12px 14px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
+  display: flex; align-items: center; gap: 12px;
 }
-
 .contact-card.highlight-card { border-color: rgba(200,255,0,0.25); }
-
 .cc-icon {
-  width: 28px;
-  height: 28px;
+  width: 28px; height: 28px;
   border-radius: 6px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: flex; align-items: center; justify-content: center;
   flex-shrink: 0;
 }
-
 .cc-icon.lime { background: var(--lime); }
 .cc-icon.dark { background: #1a1a1a; }
-
 .cc-info { display: flex; flex-direction: column; gap: 1px; }
 .cc-label { font-size: 7px; color: #333; letter-spacing: 0.15em; text-transform: uppercase; font-family: 'Space Mono', monospace; }
 .cc-value { font-size: 10px; color: #f0ede6; font-weight: 400; }
-
 .p-contact .content {
   position: absolute;
   bottom: 0; left: 0; right: 0;
@@ -611,14 +532,10 @@ h1 span { color: var(--lime); }
 /* Bottom novu sig */
 .novu-sig {
   position: absolute;
-  bottom: 14px;
-  right: 18px;
-  display: flex;
-  align-items: center;
-  gap: 5px;
+  bottom: 14px; right: 18px;
+  display: flex; align-items: center; gap: 5px;
   opacity: 0.35;
 }
-
 .novu-sig-text {
   font-family: 'Oxanium', sans-serif;
   font-size: 8px;
@@ -627,18 +544,730 @@ h1 span { color: var(--lime); }
   letter-spacing: 0.15em;
 }
 
+
+/* ═══════════════════════════════════════════
+   FEED POSTS — 1:1 square, 270×270 display
+   Export at 4x = 1080×1080
+═══════════════════════════════════════════ */
+.feed {
+  width: 270px;
+  height: 270px;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+/* ─── FEED 1 · LAUNCH ─── */
+.f-launch {
+  background: #080808;
+}
+.f-launch .noise {
+  position: absolute; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+  opacity: 0.4;
+}
+.f-launch .corner-tl {
+  position: absolute; top: 14px; left: 14px;
+  width: 28px; height: 28px;
+  border-top: 2px solid var(--lime);
+  border-left: 2px solid var(--lime);
+  opacity: 0.6;
+}
+.f-launch .corner-br {
+  position: absolute; bottom: 14px; right: 14px;
+  width: 28px; height: 28px;
+  border-bottom: 2px solid var(--lime);
+  border-right: 2px solid var(--lime);
+  opacity: 0.6;
+}
+.f-launch .lime-slash {
+  position: absolute;
+  top: 0; left: 60px;
+  width: 3px; height: 100%;
+  background: var(--lime);
+  opacity: 0.08;
+  transform: skewX(-12deg);
+}
+.f-launch .lime-slash2 {
+  position: absolute;
+  top: 0; left: 90px;
+  width: 1px; height: 100%;
+  background: var(--lime);
+  opacity: 0.04;
+  transform: skewX(-12deg);
+}
+.f-launch .eyebrow {
+  position: absolute;
+  top: 22px; left: 22px;
+  font-family: 'Space Mono', monospace;
+  font-size: 7px;
+  color: var(--lime);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+}
+.f-launch .main-txt {
+  position: absolute;
+  top: 50px; left: 22px; right: 22px;
+}
+.f-launch .line1 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 58px;
+  line-height: 0.88;
+  color: var(--off);
+  letter-spacing: 0.01em;
+}
+.f-launch .line2 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 58px;
+  line-height: 0.88;
+  color: var(--lime);
+  letter-spacing: 0.01em;
+}
+.f-launch .sub {
+  position: absolute;
+  bottom: 36px; left: 22px; right: 22px;
+  font-size: 9.5px;
+  color: #333;
+  line-height: 1.6;
+  font-weight: 300;
+}
+.f-launch .handle {
+  position: absolute;
+  bottom: 18px; right: 22px;
+  font-family: 'Space Mono', monospace;
+  font-size: 7px;
+  color: #222;
+  letter-spacing: 0.12em;
+}
+
+/* ─── FEED 2 · SERVICES ─── */
+.f-services {
+  background: #f0ede6;
+}
+.f-services .top-bar {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 56px;
+  background: #080808;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 18px;
+}
+.f-services .tb-logo {
+  font-family: 'Oxanium', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--off);
+  letter-spacing: 0.15em;
+}
+.f-services .tb-tag {
+  font-family: 'Space Mono', monospace;
+  font-size: 7px;
+  color: var(--lime);
+  letter-spacing: 0.2em;
+}
+.f-services .grid-2x2 {
+  position: absolute;
+  top: 68px; left: 14px; right: 14px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+.svc-card {
+  background: #fff;
+  border: 1px solid #e8e4dc;
+  border-radius: 4px;
+  padding: 12px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.svc-card.dark {
+  background: #0a0a0a;
+  border-color: #0a0a0a;
+}
+.svc-card.lime {
+  background: var(--lime);
+  border-color: var(--lime);
+}
+.svc-icon {
+  font-size: 18px;
+  line-height: 1;
+  margin-bottom: 2px;
+}
+.svc-name {
+  font-family: 'Oxanium', sans-serif;
+  font-size: 9px;
+  font-weight: 700;
+  color: #0a0a0a;
+  letter-spacing: 0.04em;
+}
+.svc-card.dark .svc-name { color: var(--off); }
+.svc-card.lime .svc-name { color: #080808; }
+.svc-desc {
+  font-size: 7.5px;
+  color: #999;
+  line-height: 1.4;
+  font-weight: 300;
+}
+.svc-card.dark .svc-desc { color: #444; }
+.svc-card.lime .svc-desc { color: rgba(8,8,8,0.5); }
+.f-services .bottom-strip {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 28px;
+  background: #080808;
+  display: flex; align-items: center; justify-content: center;
+}
+.f-services .bs-txt {
+  font-family: 'Space Mono', monospace;
+  font-size: 7px;
+  color: #2a2a2a;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+}
+
+/* ─── FEED 3 · BEFORE / AFTER ─── */
+.f-ba {
+  background: #080808;
+}
+.f-ba .left-half {
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 50%;
+  background: #f0ede6;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 16px;
+}
+.f-ba .right-half {
+  position: absolute;
+  right: 0; top: 0; bottom: 0;
+  width: 50%;
+  background: #080808;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 16px;
+}
+.f-ba .divider-line {
+  position: absolute;
+  left: 50%;
+  top: 0; bottom: 0;
+  width: 2px;
+  background: var(--lime);
+  transform: translateX(-50%);
+  z-index: 2;
+}
+.f-ba .divider-icon {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 28px; height: 28px;
+  background: var(--lime);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  z-index: 3;
+  font-size: 10px;
+  font-weight: 700;
+  color: #080808;
+  font-family: 'Space Mono', monospace;
+}
+.ba-label {
+  font-family: 'Space Mono', monospace;
+  font-size: 6.5px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.f-ba .left-half .ba-label { color: #aaa; }
+.f-ba .right-half .ba-label { color: var(--lime); }
+.ba-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 22px;
+  line-height: 1;
+  letter-spacing: 0.02em;
+  text-align: center;
+}
+.f-ba .left-half .ba-title { color: #bbb; }
+.f-ba .right-half .ba-title { color: var(--off); }
+.ba-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 8px;
+  width: 100%;
+}
+.ba-item {
+  font-size: 7px;
+  font-weight: 300;
+  line-height: 1.4;
+  display: flex;
+  align-items: flex-start;
+  gap: 4px;
+}
+.f-ba .left-half .ba-item { color: #aaa; }
+.f-ba .right-half .ba-item { color: #666; }
+.ba-item .icon-x { color: #cc3333; font-size: 8px; }
+.ba-item .icon-c { color: var(--lime); font-size: 8px; }
+.f-ba .bottom-label {
+  position: absolute;
+  bottom: 10px; left: 0; right: 0;
+  text-align: center;
+  font-family: 'Space Mono', monospace;
+  font-size: 7px;
+  color: #1a1a1a;
+  letter-spacing: 0.2em;
+}
+
+/* ─── FEED 4 · TIP POST ─── */
+.f-tip {
+  background: #0a0a0a;
+}
+.f-tip .lime-top {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 6px;
+  background: var(--lime);
+}
+.f-tip .num {
+  position: absolute;
+  top: 14px; right: 16px;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 80px;
+  line-height: 1;
+  color: rgba(200,255,0,0.06);
+}
+.f-tip .eyebrow {
+  position: absolute;
+  top: 20px; left: 18px;
+  font-family: 'Space Mono', monospace;
+  font-size: 7px;
+  color: var(--lime);
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+}
+.f-tip .headline {
+  position: absolute;
+  top: 38px; left: 18px; right: 18px;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 30px;
+  line-height: 1.0;
+  color: var(--off);
+  letter-spacing: 0.02em;
+}
+.f-tip .tip-list {
+  position: absolute;
+  top: 118px; left: 18px; right: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.tip-item {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+}
+.tip-num {
+  font-family: 'Oxanium', sans-serif;
+  font-size: 9px;
+  font-weight: 700;
+  color: var(--lime);
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+.tip-content {}
+.tip-title {
+  font-size: 10px;
+  color: var(--off);
+  font-weight: 500;
+  margin-bottom: 2px;
+}
+.tip-body {
+  font-size: 8.5px;
+  color: #3a3a3a;
+  line-height: 1.5;
+  font-weight: 300;
+}
+.f-tip .bottom {
+  position: absolute;
+  bottom: 12px; left: 18px; right: 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.f-tip .save-hint {
+  font-family: 'Space Mono', monospace;
+  font-size: 7px;
+  color: #1e1e1e;
+  letter-spacing: 0.15em;
+}
+.f-tip .handle {
+  font-family: 'Space Mono', monospace;
+  font-size: 7px;
+  color: #1e1e1e;
+  letter-spacing: 0.1em;
+}
+
+/* ─── FEED 5 · WHY CUSTOM ─── */
+.f-why {
+  background: var(--lime);
+}
+.f-why .big-word {
+  position: absolute;
+  top: -8px; left: -4px;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 140px;
+  line-height: 0.85;
+  color: rgba(8,8,8,0.07);
+  letter-spacing: -2px;
+}
+.f-why .content {
+  position: absolute;
+  inset: 0;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.f-why .eyebrow {
+  font-family: 'Space Mono', monospace;
+  font-size: 7px;
+  color: rgba(8,8,8,0.45);
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+}
+.f-why .headline {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 38px;
+  line-height: 0.9;
+  color: #080808;
+  letter-spacing: 0.01em;
+  margin-top: 6px;
+}
+.f-why .vs-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 10px;
+}
+.vs-row {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+}
+.vs-icon {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 8px;
+  font-weight: 700;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+.vs-icon.yes { background: #080808; color: var(--lime); }
+.vs-icon.no { background: rgba(8,8,8,0.15); color: rgba(8,8,8,0.4); }
+.vs-text {
+  font-size: 9px;
+  line-height: 1.4;
+}
+.vs-row .vs-text.yes-txt { color: #080808; font-weight: 500; }
+.vs-row .vs-text.no-txt { color: rgba(8,8,8,0.45); font-weight: 300; text-decoration: line-through; text-decoration-color: rgba(8,8,8,0.2); }
+.f-why .bottom-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.f-why .cta {
+  background: #080808;
+  color: var(--lime);
+  font-family: 'Space Mono', monospace;
+  font-size: 7px;
+  padding: 6px 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+.f-why .handle {
+  font-family: 'Space Mono', monospace;
+  font-size: 7px;
+  color: rgba(8,8,8,0.35);
+  letter-spacing: 0.1em;
+}
+
+/* ─── FEED 6 · ABOUT ─── */
+.f-about {
+  background: #080808;
+}
+.f-about .diag {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 100%;
+  background: linear-gradient(150deg, #0d0d0d 55%, #0a1400 100%);
+}
+.f-about .grid-bg {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(200,255,0,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(200,255,0,0.025) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+.f-about .logo-big {
+  position: absolute;
+  top: 20px; left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+.f-about .logo-txt {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 36px;
+  letter-spacing: 0.18em;
+  color: var(--off);
+}
+.f-about .logo-sub {
+  font-family: 'Space Mono', monospace;
+  font-size: 7px;
+  color: var(--lime);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+}
+.f-about .divider {
+  position: absolute;
+  top: 110px; left: 20px; right: 20px;
+  height: 1px;
+  background: #141414;
+}
+.f-about .bio {
+  position: absolute;
+  top: 122px; left: 20px; right: 20px;
+}
+.f-about .bio-line {
+  font-size: 9.5px;
+  color: #444;
+  line-height: 1.7;
+  font-weight: 300;
+}
+.f-about .bio-line strong { color: #888; font-weight: 400; }
+.f-about .stats {
+  position: absolute;
+  bottom: 40px; left: 20px; right: 20px;
+  display: flex;
+  gap: 0;
+}
+.stat-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  border-right: 1px solid #141414;
+  padding: 0 12px;
+}
+.stat-item:first-child { padding-left: 0; }
+.stat-item:last-child { border-right: none; }
+.stat-num {
+  font-family: 'Oxanium', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--lime);
+  line-height: 1;
+}
+.stat-label {
+  font-family: 'Space Mono', monospace;
+  font-size: 6px;
+  color: #2a2a2a;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+.f-about .bottom-bar {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 26px;
+  background: var(--lime);
+  display: flex; align-items: center; justify-content: center;
+}
+.f-about .bb-txt {
+  font-family: 'Space Mono', monospace;
+  font-size: 7px;
+  color: #080808;
+  font-weight: 700;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+}
+
+/* ─── FEED 7 · TAGLINE ─── */
+.f-tagline {
+  background: #0a0a0a;
+}
+.f-tagline .lines {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+}
+.tl-row {
+  flex: 1;
+  border-bottom: 1px solid #0f0f0f;
+}
+.f-tagline .content {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 22px;
+}
+.f-tagline .pre {
+  font-family: 'Space Mono', monospace;
+  font-size: 7px;
+  color: var(--lime);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.f-tagline .big {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 44px;
+  line-height: 0.88;
+  color: var(--off);
+  letter-spacing: 0.01em;
+  margin-bottom: 16px;
+}
+.f-tagline .big span { color: var(--lime); }
+.f-tagline .detail {
+  font-size: 9.5px;
+  color: #2a2a2a;
+  line-height: 1.7;
+  font-weight: 300;
+  max-width: 200px;
+}
+.f-tagline .side-text {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%) rotate(90deg);
+  font-family: 'Space Mono', monospace;
+  font-size: 6px;
+  color: #151515;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.f-tagline .bottom-pill {
+  position: absolute;
+  bottom: 18px; left: 22px;
+  display: flex; align-items: center; gap: 8px;
+}
+.tl-pill {
+  background: var(--lime);
+  color: #080808;
+  font-family: 'Space Mono', monospace;
+  font-size: 7px;
+  padding: 4px 9px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+/* ─── FEED 8 · DM CTA ─── */
+.f-cta {
+  background: var(--lime);
+}
+.f-cta .bg-x {
+  position: absolute;
+  top: -20px; right: -20px;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 240px;
+  line-height: 1;
+  color: rgba(8,8,8,0.06);
+  letter-spacing: -5px;
+}
+.f-cta .content {
+  position: absolute;
+  inset: 0;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.f-cta .eyebrow {
+  font-family: 'Space Mono', monospace;
+  font-size: 7px;
+  color: rgba(8,8,8,0.4);
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+}
+.f-cta .big {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 56px;
+  line-height: 0.88;
+  color: #080808;
+  letter-spacing: 0.01em;
+}
+.f-cta .sub {
+  font-size: 10px;
+  color: rgba(8,8,8,0.55);
+  line-height: 1.5;
+  font-weight: 300;
+  max-width: 180px;
+}
+.f-cta .action-row {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.f-cta .wa-btn {
+  background: #080808;
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.wa-icon {
+  width: 16px; height: 16px;
+  border-radius: 50%;
+  background: #25D366;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.wa-icon svg { display: block; }
+.wa-txt {
+  font-family: 'Space Mono', monospace;
+  font-size: 8px;
+  color: var(--lime);
+  letter-spacing: 0.1em;
+}
+.f-cta .ig-line {
+  font-family: 'Space Mono', monospace;
+  font-size: 7px;
+  color: rgba(8,8,8,0.4);
+  letter-spacing: 0.1em;
+  text-align: center;
+}
+
 </style>
 </head>
 <body>
 
-<h1>Novu <span>Studios</span> — Highlight Story Posters</h1>
+<h1>Novu <span>Studios</span> — All Posters</h1>
+
+<!-- ═══════════════════════════
+     SECTION A: STORY HIGHLIGHTS
+════════════════════════════ -->
+<div class="section-label">A · <span>Instagram Story Highlights</span> — 1080×1920</div>
 
 <!-- ROW 1 -->
 <div class="poster-row">
 
   <!-- ① RESTAURANTS -->
-  <div>
-    <div class="poster p-restaurants">
+  <div class="poster-wrap">
+    <div class="poster p-restaurants" id="p1">
       <div class="bg-grid"></div>
       <div class="lime-bar"></div>
 
@@ -661,7 +1290,7 @@ h1 span { color: var(--lime); }
 
       <div class="content">
         <span class="tag">// Highlight</span>
-        <div class="poster-title">RESTAURANTS<br>CAFES</div>
+        <div class="poster-title">RESTAURANTS-<br>CAFES</div>
         <div class="poster-body">Custom websites built for restaurants — cafes —<strong>every theme unique,</strong> every design made to match your brand and vibe.</div>
         <div class="lime-pill">View Projects →</div>
       </div>
@@ -672,11 +1301,12 @@ h1 span { color: var(--lime); }
       </div>
     </div>
     <div class="poster-label">01 · Restaurants</div>
+    <button class="dl-btn" onclick="dlPoster('p1','01-restaurants',270,480)">↓ Save Image</button>
   </div>
 
   <!-- ② MENUS -->
-  <div>
-    <div class="poster p-menus">
+  <div class="poster-wrap">
+    <div class="poster p-menus" id="p2">
       <div class="dark-block"></div>
 
       <div class="story-bar">
@@ -691,15 +1321,16 @@ h1 span { color: var(--lime); }
         <span class="tag" style="color:var(--lime)">// Digital Menus</span>
         <div class="menu-showcase">
           <div class="menu-row"><span class="menu-item-name">Margherita Pizza</span><span class="menu-item-price">$14</span></div>
-          <div class="menu-row"><span class="menu-item-name">Truffle Pasta</span><span class="menu-item-price">$22</span></div>
-          <div class="menu-row"><span class="menu-item-name">Grilled Salmon</span><span class="menu-item-price">$28</span></div>
+          <div class="menu-row"><span class="menu-item-name">Truffle Pasta</span><span class="menu-item-price">$18</span></div>
+          <div class="menu-row"><span class="menu-item-name">Grilled Salmon</span><span class="menu-item-price">$28
+          </span></div>
           <div class="menu-row"><span class="menu-item-name">Tiramisu</span><span class="menu-item-price">$9</span></div>
         </div>
       </div>
 
       <div class="content">
         <span class="tag">From PDF to Web</span>
-        <div class="poster-title">DIG-<br>ITAL<br>MENUS</div>
+        <div class="poster-title">DIGITAL<br>MENUS</div>
         <div class="poster-body" style="color:#888">Beautiful, mobile-friendly menus your customers can browse online — always up to date.</div>
       </div>
 
@@ -709,11 +1340,12 @@ h1 span { color: var(--lime); }
       </div>
     </div>
     <div class="poster-label">02 · Menus</div>
+    <button class="dl-btn" onclick="dlPoster('p2','02-menus',270,480)">↓ Save Image</button>
   </div>
 
   <!-- ③ PORTFOLIO -->
-  <div>
-    <div class="poster p-portfolio">
+  <div class="poster-wrap">
+    <div class="poster p-portfolio" id="p3">
       <div class="accent-circle"></div>
       <div class="accent-circle-2"></div>
 
@@ -757,6 +1389,7 @@ h1 span { color: var(--lime); }
       </div>
     </div>
     <div class="poster-label">03 · Portfolio</div>
+    <button class="dl-btn" onclick="dlPoster('p3','03-portfolio',270,480)">↓ Save Image</button>
   </div>
 
 </div>
@@ -765,8 +1398,8 @@ h1 span { color: var(--lime); }
 <div class="poster-row">
 
   <!-- ④ PROCESS -->
-  <div>
-    <div class="poster p-process">
+  <div class="poster-wrap">
+    <div class="poster p-process" id="p4">
       <div class="stripe"></div>
 
       <div class="story-bar">
@@ -821,7 +1454,7 @@ h1 span { color: var(--lime); }
 
       <div class="content">
         <span class="tag">// How It Works</span>
-        <div class="poster-title">THE<br>PROC-<br>ESS</div>
+        <div class="poster-title">THE<br>PROCESS</div>
       </div>
 
       <div class="novu-sig">
@@ -830,11 +1463,12 @@ h1 span { color: var(--lime); }
       </div>
     </div>
     <div class="poster-label">04 · Process</div>
+    <button class="dl-btn" onclick="dlPoster('p4','04-process',270,480)">↓ Save Image</button>
   </div>
 
   <!-- ⑤ REVIEWS -->
-  <div>
-    <div class="poster p-reviews">
+  <div class="poster-wrap">
+    <div class="poster p-reviews" id="p5">
       <div class="top-block"></div>
 
       <div class="story-bar">
@@ -863,11 +1497,12 @@ h1 span { color: var(--lime); }
       </div>
     </div>
     <div class="poster-label">05 · Reviews</div>
+    <button class="dl-btn" onclick="dlPoster('p5','05-reviews',270,480)">↓ Save Image</button>
   </div>
 
   <!-- ⑥ PRICING -->
-  <div>
-    <div class="poster p-pricing">
+  <div class="poster-wrap">
+    <div class="poster p-pricing" id="p6">
       <div class="big-num">$</div>
 
       <div class="story-bar">
@@ -892,6 +1527,7 @@ h1 span { color: var(--lime); }
       <div class="cta-bar">DM to get a free quote → @novustudios</div>
     </div>
     <div class="poster-label">06 · Pricing</div>
+    <button class="dl-btn" onclick="dlPoster('p6','06-pricing',270,480)">↓ Save Image</button>
   </div>
 
 </div>
@@ -900,8 +1536,8 @@ h1 span { color: var(--lime); }
 <div class="poster-row">
 
   <!-- ⑦ BEHIND THE SCENES -->
-  <div>
-    <div class="poster p-bts">
+  <div class="poster-wrap">
+    <div class="poster p-bts" id="p7">
       <div class="editor-mock">
         <div class="editor-topbar">
           <div class="ed-dot" style="background:#ff5f56"></div>
@@ -942,11 +1578,12 @@ h1 span { color: var(--lime); }
       </div>
     </div>
     <div class="poster-label">07 · Behind The Scenes</div>
+    <button class="dl-btn" onclick="dlPoster('p7','07-bts',270,480)">↓ Save Image</button>
   </div>
 
   <!-- ⑧ CONTACT -->
-  <div>
-    <div class="poster p-contact">
+  <div class="poster-wrap">
+    <div class="poster p-contact" id="p8">
       <div class="diagonal-bg"></div>
       <div class="glow"></div>
 
@@ -990,9 +1627,319 @@ h1 span { color: var(--lime); }
       </div>
     </div>
     <div class="poster-label">08 · Contact</div>
+    <button class="dl-btn" onclick="dlPoster('p8','08-contact',270,480)">↓ Save Image</button>
   </div>
 
 </div>
 
+
+<!-- ═══════════════════════════
+     SECTION B: IG FEED POSTS
+════════════════════════════ -->
+<div class="section-divider"></div>
+<div class="section-label">B · <span>Instagram Feed Posts</span> — 1080×1080</div>
+
+<div class="poster-row">
+
+  <!-- F1 · LAUNCH -->
+  <div class="poster-wrap">
+    <div class="feed f-launch" id="f1">
+      <div class="noise"></div>
+      <div class="lime-slash"></div>
+      <div class="lime-slash2"></div>
+      <div class="corner-tl"></div>
+      <div class="corner-br"></div>
+      <span class="eyebrow">// We're live</span>
+      <div class="main-txt">
+        <div class="line1">WE BUILD</div>
+        <div class="line1">WEBSITES</div>
+        <div class="line1">THAT MAKE</div>
+        <div class="line1">PEOPLE</div>
+        <div class="line2">STOP.</div>
+      </div>
+      <div class="sub">Custom websites for restaurants, cafes, portfolios &amp; brands. Based in Lebanon — built for the world.</div>
+      <span class="handle">@novustudios</span>
+    </div>
+    <div class="poster-label">F1 · Launch</div>
+    <button class="dl-btn" onclick="dlPoster('f1','F1-launch',270,270)">↓ Save Image</button>
+  </div>
+
+  <!-- F2 · SERVICES -->
+  <div class="poster-wrap">
+    <div class="feed f-services" id="f2">
+      <div class="top-bar">
+        <span class="tb-logo">NOVU</span>
+        <span class="tb-tag">// What We Do</span>
+      </div>
+      <div class="grid-2x2">
+        <div class="svc-card dark">
+          <div class="svc-icon">🌐</div>
+          <div class="svc-name">Websites</div>
+          <div class="svc-desc">Custom coded sites for restaurants &amp; brands</div>
+        </div>
+        <div class="svc-card lime">
+          <div class="svc-icon">📋</div>
+          <div class="svc-name">Menus</div>
+          <div class="svc-desc">Digital menus that live online &amp; update instantly</div>
+        </div>
+        <div class="svc-card">
+          <div class="svc-icon">👤</div>
+          <div class="svc-name">Portfolios</div>
+          <div class="svc-desc">Personal sites that show your work beautifully</div>
+        </div>
+        <div class="svc-card dark">
+          <div class="svc-icon">🚀</div>
+          <div class="svc-name">Landing Pages</div>
+          <div class="svc-desc">Fast, focused pages built to convert visitors</div>
+        </div>
+      </div>
+      <div class="bottom-strip">
+        <span class="bs-txt">DM to start your project → @novustudios</span>
+      </div>
+    </div>
+    <div class="poster-label">F2 · Services</div>
+    <button class="dl-btn" onclick="dlPoster('f2','F2-services',270,270)">↓ Save Image</button>
+  </div>
+
+  <!-- F3 · BEFORE / AFTER -->
+  <div class="poster-wrap">
+    <div class="feed f-ba" id="f3">
+      <div class="left-half">
+        <span class="ba-label">Before</span>
+        <div class="ba-title">NO<br>WEBSITE</div>
+        <div class="ba-list">
+          <div class="ba-item"><span class="icon-x">✗</span> Hard to find online</div>
+          <div class="ba-item"><span class="icon-x">✗</span> Lose customers daily</div>
+          <div class="ba-item"><span class="icon-x">✗</span> Look unprofessional</div>
+          <div class="ba-item"><span class="icon-x">✗</span> No booking / menu</div>
+        </div>
+      </div>
+      <div class="right-half">
+        <span class="ba-label" style="color:var(--lime)">After</span>
+        <div class="ba-title" style="color:var(--off)">WITH<br>NOVU</div>
+        <div class="ba-list">
+          <div class="ba-item"><span class="icon-c">✓</span> <span style="color:#888">Found on Google</span></div>
+          <div class="ba-item"><span class="icon-c">✓</span> <span style="color:#888">24/7 online presence</span></div>
+          <div class="ba-item"><span class="icon-c">✓</span> <span style="color:#888">Premium first impression</span></div>
+          <div class="ba-item"><span class="icon-c">✓</span> <span style="color:#888">Digital menu included</span></div>
+        </div>
+      </div>
+      <div class="divider-line"></div>
+      <div class="divider-icon">vs</div>
+      <div class="bottom-label">@novustudios</div>
+    </div>
+    <div class="poster-label">F3 · Before / After</div>
+    <button class="dl-btn" onclick="dlPoster('f3','F3-before-after',270,270)">↓ Save Image</button>
+  </div>
+
+  <!-- F4 · TIP -->
+  <div class="poster-wrap">
+    <div class="feed f-tip" id="f4">
+      <div class="lime-top"></div>
+      <div class="num">3</div>
+      <span class="eyebrow">// Web Design Tip</span>
+      <div class="headline">3 THINGS EVERY<br>RESTAURANT WEBSITE<br>NEEDS IN 2026</div>
+      <div class="tip-list">
+        <div class="tip-item">
+          <span class="tip-num">01</span>
+          <div class="tip-content">
+            <div class="tip-title">A Digital Menu</div>
+            <div class="tip-body">Customers check menus online before they visit. If it's not there, they pick somewhere else.</div>
+          </div>
+        </div>
+        <div class="tip-item">
+          <span class="tip-num">02</span>
+          <div class="tip-content">
+            <div class="tip-title">Mobile-First Design</div>
+            <div class="tip-body">80% of your visitors are on phones. If it doesn't look great on mobile, it's costing you.</div>
+          </div>
+        </div>
+        <div class="tip-item">
+          <span class="tip-num">03</span>
+          <div class="tip-content">
+            <div class="tip-title">Fast Load Speed</div>
+            <div class="tip-body">Every second of delay costs bookings. Clean code = fast site = more customers.</div>
+          </div>
+        </div>
+      </div>
+      <div class="bottom">
+        <span class="save-hint">💾 Save this</span>
+        <span class="handle">@novustudios</span>
+      </div>
+    </div>
+    <div class="poster-label">F4 · Tip Post</div>
+    <button class="dl-btn" onclick="dlPoster('f4','F4-tip',270,270)">↓ Save Image</button>
+  </div>
+
+</div>
+
+<div class="poster-row">
+
+  <!-- F5 · WHY CUSTOM -->
+  <div class="poster-wrap">
+    <div class="feed f-why" id="f5">
+      <div class="big-word">WIX<br>VS<br>US</div>
+      <div class="content">
+        <div>
+          <div class="eyebrow">// Custom Code vs. Wix</div>
+          <div class="headline">WHY CUSTOM<br>CODE WINS<br>EVERY TIME.</div>
+        </div>
+        <div class="vs-list">
+          <div class="vs-row">
+            <div class="vs-icon yes">✓</div>
+            <div class="vs-text yes-txt">Loads 3× faster — better Google ranking</div>
+          </div>
+          <div class="vs-row">
+            <div class="vs-icon yes">✓</div>
+            <div class="vs-text yes-txt">100% unique — no one has your design</div>
+          </div>
+          <div class="vs-row">
+            <div class="vs-icon yes">✓</div>
+            <div class="vs-text yes-txt">No monthly fees to Wix or Squarespace</div>
+          </div>
+          <div class="vs-row">
+            <div class="vs-icon no">✗</div>
+            <div class="vs-text no-txt">Template that 10,000 others use</div>
+          </div>
+          <div class="vs-row">
+            <div class="vs-icon no">✗</div>
+            <div class="vs-text no-txt">Slow, bloated, hard to customise</div>
+          </div>
+        </div>
+        <div class="bottom-row">
+          <span class="cta">DM US →</span>
+          <span class="handle">@novustudios</span>
+        </div>
+      </div>
+    </div>
+    <div class="poster-label">F5 · Why Custom</div>
+    <button class="dl-btn" onclick="dlPoster('f5','F5-why-custom',270,270)">↓ Save Image</button>
+  </div>
+
+  <!-- F6 · ABOUT -->
+  <div class="poster-wrap">
+    <div class="feed f-about" id="f6">
+      <div class="diag"></div>
+      <div class="grid-bg"></div>
+      <div class="logo-big">
+        <div style="display:flex;align-items:center;gap:8px;">
+          <svg width="28" height="28" viewBox="0 0 110 110" fill="none"><circle cx="55" cy="55" r="52" fill="#111" stroke="#1e1e1e" stroke-width="2"/><rect x="27" y="26" width="14" height="58" rx="2" fill="#f0ede6"/><rect x="69" y="26" width="14" height="58" rx="2" fill="#f0ede6"/><line x1="41" y1="26" x2="69" y2="84" stroke="#c8ff00" stroke-width="12" stroke-linecap="round"/></svg>
+          <span class="logo-txt">NOVU STUDIOS</span>
+        </div>
+        <span class="logo-sub">Web Design Studio · Lebanon</span>
+      </div>
+      <div class="divider"></div>
+      <div class="bio">
+        <div class="bio-line">We're a Lebanese web design studio building <strong>custom websites</strong> for restaurants, cafes, portfolios, and brands.</div>
+        <div class="bio-line" style="margin-top:6px;">Every site is <strong>handcrafted</strong> — no templates, no builders. Just clean code and strong design.</div>
+      </div>
+      <div class="stats">
+        <div class="stat-item">
+          <span class="stat-num">100%</span>
+          <span class="stat-label">Custom Code</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num">48h</span>
+          <span class="stat-label">Avg. Delivery</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num">∞</span>
+          <span class="stat-label">Revisions</span>
+        </div>
+      </div>
+      <div class="bottom-bar">
+        <span class="bb-txt">DM to start your project</span>
+      </div>
+    </div>
+    <div class="poster-label">F6 · About Us</div>
+    <button class="dl-btn" onclick="dlPoster('f6','F6-about',270,270)">↓ Save Image</button>
+  </div>
+
+  <!-- F7 · TAGLINE -->
+  <div class="poster-wrap">
+    <div class="feed f-tagline" id="f7">
+      <div class="lines">
+        <div class="tl-row"></div><div class="tl-row"></div><div class="tl-row"></div>
+        <div class="tl-row"></div><div class="tl-row"></div><div class="tl-row"></div>
+      </div>
+      <div class="content">
+        <span class="pre">// Novu Studios</span>
+        <div class="big">YOUR<br>WEBSITE<br>IS YOUR<br><span>FIRST</span><br>IMPRESSION.</div>
+        <div class="detail">Make it count. We build sites that look premium, load fast, and turn visitors into customers.</div>
+      </div>
+      <div class="side-text">@novustudios · web design studio</div>
+      <div class="bottom-pill">
+        <span class="tl-pill">Start Today →</span>
+      </div>
+    </div>
+    <div class="poster-label">F7 · Tagline</div>
+    <button class="dl-btn" onclick="dlPoster('f7','F7-tagline',270,270)">↓ Save Image</button>
+  </div>
+
+  <!-- F8 · DM CTA -->
+  <div class="poster-wrap">
+    <div class="feed f-cta" id="f8">
+      <div class="bg-x">DM</div>
+      <div class="content">
+        <span class="eyebrow">// Ready to start?</span>
+        <div class="big">GET A<br>FREE<br>QUOTE.<br>TODAY.</div>
+        <div class="sub">Tell us what you need. We'll reply within hours with a plan and a price.</div>
+        <div class="action-row">
+          <div class="wa-btn">
+            <div class="wa-icon">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            </div>
+            <span class="wa-txt">WhatsApp: +961 70 786 131</span>
+          </div>
+          <div class="ig-line">or DM us on Instagram → @novustudios</div>
+        </div>
+      </div>
+    </div>
+    <div class="poster-label">F8 · DM CTA</div>
+    <button class="dl-btn" onclick="dlPoster('f8','F8-cta',270,270)">↓ Save Image</button>
+  </div>
+
+</div>
+
+
+<script>
+async function dlPoster(id, filename, w, h) {
+  const btn = event.target;
+  const orig = btn.textContent;
+  btn.textContent = '⏳ Rendering...';
+  btn.disabled = true;
+
+  const el = document.getElementById(id);
+
+  try {
+    const canvas = await html2canvas(el, {
+      scale: 4,
+      useCORS: true,
+      allowTaint: true,
+      backgroundColor: null,
+      width: w,
+      height: h,
+      logging: false,
+      windowWidth: w,
+      windowHeight: h
+    });
+
+    const link = document.createElement('a');
+    link.download = filename + '.png';
+    link.href = canvas.toDataURL('image/png', 1.0);
+    link.click();
+
+    btn.textContent = '✓ Saved!';
+    setTimeout(() => {
+      btn.textContent = orig;
+      btn.disabled = false;
+    }, 2000);
+  } catch(e) {
+    console.error(e);
+    btn.textContent = '✗ Error — try again';
+    btn.disabled = false;
+  }
+}
+</script>
 </body>
 </html>
